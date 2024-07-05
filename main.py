@@ -17,23 +17,25 @@ for row in rows:
     match_data = {
         "hero_level": cols[0].text.strip(),
         "hero": cols[1].text.strip(),
-        "result": cols[2].text.strip(),
-        "result": cols[3].text.strip(),
+        #"result": cols[2].text.strip(),
+        "date": cols[3].text.strip(),
         "type": cols[4].text.strip(),
         "duration": cols[5].text.strip(),
-        "date": cols[6].text.strip()
+        "kda": cols[6].text.strip()
     }
     matches_data.append(match_data)
 
 
-df = pd.DataFrame(matches_data)
+dataframe = pd.DataFrame(matches_data)
 
-unique_heroes = df["hero"].nunique()
-num_of_games = len(df)
-
-print(f"In your past {num_of_games} games, you have played a total of {unique_heroes} different heroes.")
-
-win_count = df["result"].str.contains('Won').sum()
+unique_heroes = dataframe["hero"].nunique()
+num_of_games = len(dataframe)
+top3_most_played = dataframe["hero"].value_counts().nlargest(3)
+win_count = dataframe["date"].str.contains('Won').sum()
 win_rate = round((win_count / num_of_games) * 100)
 
+print(dataframe)
+print(f"In your past {num_of_games} games, you have played a total of {unique_heroes} different heroes.")
 print(f"Winning {win_count} out of those 50 games, at a {win_rate}% winrate")
+#print(f"Your 3 most played heroes were:\n {top3_most_played}")
+
