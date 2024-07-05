@@ -25,7 +25,9 @@ for row in rows:
     matches_data.append(match_data)
 
 
-for item in matches_data: #loop to print the dict line by line
-    print(item)
+df = pd.DataFrame(matches_data)
 
-print("a")
+unique_heroes = df["hero"].nunique()
+num_of_games = len(df)
+
+print(f"In your past {num_of_games} you have played {unique_heroes} different heroes.")
