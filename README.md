@@ -1,5 +1,7 @@
 # dotabuff matches summary
 
+To run this, you need to have the modules Requests, BeautifulSoup4 and Pandas. The three can be installed through pip.
+
 This script should take a dotabuff.com matches page from a players profile, and give a summary of stats at a quick glance.
 
 I'm using BeautifulSoup to scrape the page and some very basic pandas function to organize and view the information in a 2d table.
